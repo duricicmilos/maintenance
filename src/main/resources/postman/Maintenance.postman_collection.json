@@ -1,0 +1,344 @@
+{
+	"info": {
+		"_postman_id": "e3b24d39-3208-4fea-a349-0d23b18cee64",
+		"name": "Maintenance",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "1198601"
+	},
+	"item": [
+		{
+			"name": "Tenant",
+			"item": [
+				{
+					"name": "Read Tenant Root",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.environment.set(\"tenant_uuid\", pm.response.json().uuid);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{maintenanceUrl}}{{port}}/api/tenant/root",
+							"host": [
+								"{{maintenanceUrl}}{{port}}"
+							],
+							"path": [
+								"api",
+								"tenant",
+								"root"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Tenant",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.environment.set(\"tenant_uuid\", pm.response.json().uuid);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Client 1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{maintenanceUrl}}{{port}}/api/tenant?tenant_uuid={{tenant_uuid}}",
+							"host": [
+								"{{maintenanceUrl}}{{port}}"
+							],
+							"path": [
+								"api",
+								"tenant"
+							],
+							"query": [
+								{
+									"key": "tenant_uuid",
+									"value": "{{tenant_uuid}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Read User By ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{maintenanceUrl}}{{port}}/api/tenant/:id",
+							"host": [
+								"{{maintenanceUrl}}{{port}}"
+							],
+							"path": [
+								"api",
+								"tenant",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{tenant_uuid}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update User By ID",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Client 1_UPDATED\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{maintenanceUrl}}{{port}}/api/tenant/:id",
+							"host": [
+								"{{maintenanceUrl}}{{port}}"
+							],
+							"path": [
+								"api",
+								"tenant",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{tenant_uuid}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete User By ID",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{maintenanceUrl}}{{port}}/api/tenant/:id",
+							"host": [
+								"{{maintenanceUrl}}{{port}}"
+							],
+							"path": [
+								"api",
+								"tenant",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{tenant_uuid}}"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Create User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.environment.set(\"user_uuid\", pm.response.json().uuid);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\": \"firstName\",\r\n    \"lastName\": \"lastName\",\r\n    \"username\": \"username\",\r\n    \"password\": \"password\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{maintenanceUrl}}{{port}}/api/user?tenant_uuid={{tenant_uuid}}",
+							"host": [
+								"{{maintenanceUrl}}{{port}}"
+							],
+							"path": [
+								"api",
+								"user"
+							],
+							"query": [
+								{
+									"key": "tenant_uuid",
+									"value": "{{tenant_uuid}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Read User By ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{maintenanceUrl}}{{port}}/api/user/:id",
+							"host": [
+								"{{maintenanceUrl}}{{port}}"
+							],
+							"path": [
+								"api",
+								"user",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{user_uuid}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update User By ID",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\": \"firstName_UPDATED\",\r\n    \"lastName\": \"lastName_UPDATED\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{maintenanceUrl}}{{port}}/api/user/:id",
+							"host": [
+								"{{maintenanceUrl}}{{port}}"
+							],
+							"path": [
+								"api",
+								"user",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{user_uuid}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete User By ID",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{maintenanceUrl}}{{port}}/api/user/:id",
+							"host": [
+								"{{maintenanceUrl}}{{port}}"
+							],
+							"path": [
+								"api",
+								"user",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{user_uuid}}"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

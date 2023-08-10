@@ -1,4 +1,4 @@
-package all.together;
+package all.together.maintenance;
 
 class MaintenanceApplicationTest {
 }

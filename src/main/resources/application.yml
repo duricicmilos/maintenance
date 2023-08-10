@@ -1,0 +1,46 @@
+spring:
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        jdbc:
+          time_zone: UTC
+    hibernate:
+      ddl-auto: create-drop
+  liquibase:
+    change-log: classpath:db/changelog/master.xml
+    enabled: false
+  datasource:
+    password: postgres
+    username: postgres
+    url: jdbc:postgresql://localhost:5432/maintenance1
+
+  mvc:
+    pathmatch:
+      matching-strategy: ANT_PATH_MATCHER
+
+  application:
+    name: legacy-main-service
+  sql:
+    init:
+      mode: always
+
+logging:
+  level:
+#    root: TRACE
+    all:
+      together.maintenance: debug
+#    org:
+#      springframework:
+#        jdbc:
+#          core:
+#            JdbcTemplate: DEBUG
+#            StatementCreatorUtils: TRACE
+
+# HTTP Server
+server:
+  port: 7777   # HTTP (Tomcat) port
+  forward-headers-strategy: native
+  tomcat:
+    remoteip:
+      remote-ip-header: X-Forwarded-For
